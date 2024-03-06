@@ -18,9 +18,26 @@ const mostrarImagenes = (imagenes) => {
     const img = document.createElement("img");
     img.src = imagen.webformatURL;
     img.alt = imagen.tags;
+    img.addEventListener("click", () => ampliarImagen(imagen.largeImageURL));
 
     divImagen.appendChild(img);
     contenedorResultados.appendChild(divImagen);
+  });
+};
+
+const ampliarImagen = (url) => {
+  const modal = document.createElement("div");
+  modal.classList.add("modal");
+
+  const imagenAmpliada = document.createElement("img");
+  imagenAmpliada.src = url;
+  imagenAmpliada.alt = "Imagen ampliada";
+
+  modal.appendChild(imagenAmpliada);
+  document.body.appendChild(modal);
+
+  modal.addEventListener("click", () => {
+    modal.remove();
   });
 };
 
@@ -30,4 +47,3 @@ const buscar = () => {
 };
 
 document.getElementById("buscar").addEventListener("click", buscar);
-
